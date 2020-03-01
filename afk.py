@@ -70,7 +70,7 @@ class AFKMod(loader.Module):
 
     async def fuckcmd(self, message):
         self._db.set(__name__, "fuck", time.time())
-        self._db.set(__name__, "ratelimit", [])
+#         self._db.set(__name__, "ratelimit", [])
 
     async def анафкcmd(self, message):
         """Remove the AFK status"""
