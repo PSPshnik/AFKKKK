@@ -56,7 +56,26 @@ class AFKMod(loader.Module):
         await self.allmodules.log("afk", data=utils.get_args_raw(message) or None)
         await utils.answer(message, self.strings["gone"])
 
+    async def afkcmd(self, message):
+        """.afk [message]"""
+        if utils.get_args_raw(message):
+            self._db.set(__name__, "afk", utils.get_args_raw(message))
+        else:
+            self._db.set(__name__, "afk", True)
+        self._db.set(__name__, "gone", time.time())
+        self._db.set(__name__, "ratelimit", [])
+        await self.allmodules.log("afk", data=utils.get_args_raw(message) or None)
+        await utils.answer(message, self.strings["gone"])
+
     async def анафкcmd(self, message):
+        """Remove the AFK status"""
+        self._db.set(__name__, "afk", False)
+        self._db.set(__name__, "gone", None)
+        self._db.set(__name__, "ratelimit", [])
+        await self.allmodules.log("unafkkkk")
+        await utils.answer(message, self.strings["back"])
+
+    async def unafkcmd(self, message):
         """Remove the AFK status"""
         self._db.set(__name__, "afk", False)
         self._db.set(__name__, "gone", None)
