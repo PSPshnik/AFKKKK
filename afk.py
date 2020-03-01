@@ -1,3 +1,4 @@
+
 from .. import loader, utils
 
 import logging
@@ -16,7 +17,7 @@ class AFKMod(loader.Module):
     """Provides a message saying that you are unavailable"""
     strings = {"name": "АФК",
                "gone": "<b>Я пиздую АФКишить</b>",
-               "back": "<b>Здарова, рядотяги!</b>",
+               "back": "<b>Здарова, ряботяги!</b>",
                "afk": "<b>Я в АФК, погоди (since {} ago).</b>",
                "afk_reason": "<b>Прямо сейчас я в АФК (since {} ago).\nReason:</b> <i>{}</i>"}
 
@@ -71,4 +72,4 @@ class AFKMod(loader.Module):
             await utils.answer(message, ret)
 
     def get_afk(self):
-        return self._db.get(__name__, "afk", False)
+        return self._db.get(__name__, "afkk", False)
