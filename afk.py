@@ -69,9 +69,9 @@ class AFKMod(loader.Module):
         await utils.answer(message, self.strings["gone"])
 
     async def fuckcmd(self, message):
-        self._db.set(__name__, "fuck", time.time())
+        self._db.set(__name__, "afk", time.time())
         self._db.set(__name__, "ratelimit", [])
-        await self.allmodules.log("fuck", data=utils.get_args_raw(message) or None)
+        await self.allmodules.log("afk", data=utils.get_args_raw(message) or None)
         await utils.answer(message, self.strings["gone"])
 
     async def анафкcmd(self, message):
