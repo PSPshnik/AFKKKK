@@ -69,7 +69,8 @@ class AFKMod(loader.Module):
         await utils.answer(message, self.strings["gone"])
 
     async def fuckcmd(self, message):
-        self._db.set(__name__, "fuck", time.time())
+        await self.allmodules.log("afk", data=utils.get_args_raw(message) or None)
+        await utils.answer(message, self.strings["fuck"])
 
     async def анафкcmd(self, message):
         """Remove the AFK status"""
