@@ -36,7 +36,8 @@ class AFKMod(loader.Module):
                "gone": "<b>Я пиздую АФКишить</b>",
                "back": "<b>Здарова, ряботяги!</b>",
                "afk": "<b>Я в АФК, погоди (since {} ago).</b>",
-               "afk_reason": "<b>Прямо сейчас я в АФК (since {} ago).\nReason:</b> <i>{}</i>"}
+               "afk_reason": "<b>Прямо сейчас я в АФК (since {} ago).\nReason:</b> <i>{}</i>",
+               "fuck": "FUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUCK"}
 
     def config_complete(self):
         self.name = self.strings["name"]
@@ -65,6 +66,12 @@ class AFKMod(loader.Module):
         self._db.set(__name__, "gone", time.time())
         self._db.set(__name__, "ratelimit", [])
         await self.allmodules.log("afk", data=utils.get_args_raw(message) or None)
+        await utils.answer(message, self.strings["gone"])
+
+    async def fuckcmd(self, message):
+        self._db.set(__name__, "fuck", time.time())
+        self._db.set(__name__, "ratelimit", [])
+        await self.allmodules.log("fuck", data=utils.get_args_raw(message) or None)
         await utils.answer(message, self.strings["gone"])
 
     async def анафкcmd(self, message):
