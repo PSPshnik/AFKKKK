@@ -56,7 +56,14 @@ class AFKMod(loader.Module):
         self._db.set(__name__, "ratelimit", [])
         await self.allmodules.log("afk", data=utils.get_args_raw(message) or None)
         await utils.answer(message, self.strings["gone"])
-
+    
+    
+    async def waitcmd(self, message):
+        time.sleep(5)
+        await utils.answer(message, "Через 5 секунд это удалится")
+        await message.delete()
+    
+    
     async def afkcmd(self, message):
         """.afk [message]"""
         if utils.get_args_raw(message):
@@ -69,7 +76,6 @@ class AFKMod(loader.Module):
         await utils.answer(message, self.strings["gone"])
 
     async def fuckcmd(self, message):
-        await self.allmodules.log("afk", data=utils.get_args_raw(message) or None)
         await utils.answer(message, self.strings["fuck"])
 
     async def анафкcmd(self, message):
