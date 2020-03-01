@@ -45,7 +45,7 @@ class AFKMod(loader.Module):
         self._db = db
         self._me = await client.get_me()
 
-    async def afkcmd(self, message):
+    async def афкcmd(self, message):
         """.afk [message]"""
         if utils.get_args_raw(message):
             self._db.set(__name__, "afk", utils.get_args_raw(message))
@@ -56,7 +56,7 @@ class AFKMod(loader.Module):
         await self.allmodules.log("afk", data=utils.get_args_raw(message) or None)
         await utils.answer(message, self.strings["gone"])
 
-    async def unacmd(self, message):
+    async def анафкcmd(self, message):
         """Remove the AFK status"""
         self._db.set(__name__, "afk", False)
         self._db.set(__name__, "gone", None)
